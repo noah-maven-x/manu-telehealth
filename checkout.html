@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Redirect - MANÜ Telehealth</title>
+    <link rel="icon" href="https://manutelehealth.com/images/cropped-favicon-192x192.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles-v3.css">
+    <!-- Hotjar Tracking Code for Manü Telehealth -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:3635830,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    <script src="https://js.stripe.com/v3/"></script> <!-- Include Stripe.js -->
+</head>
+<body>
+    <div class="background"></div>
+    <div class="header">
+        <a href="https://manutelehealth.com" id="home-link">
+            <img src="https://manutelehealth.com/images/manu-inverted.png" alt="MANÜ Telehealth Logo">
+        </a>
+    </div>
+    <div class="content">
+    <div class="message" id="loadingMessage" style="display:none;">
+        <div class="loading-container">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="loading-text">Processing...</div>
+    </div>
+    </div>
+    <div class="message" id="errorMessage" style="display:none;">
+        <p><strong>Oops! Some necessary information is missing.</strong></p>
+        <p>Please return to the Start Page to begin or continue your application.</p>
+        <p>If you need further assistance, please reach out to us at <a href="mailto:info@manutelehealth.com">info@manutelehealth.com</a>.</p>
+    </div>
+    <div class="button-container" id="buttonContainer" style="display:none;">
+        <a href="https://manutelehealth.com/start" class="notification-button">Go to Start Page</a>
+    </div>
+</div>
+    <div class="footer">
+        &copy; Copyright 2024 MANÜ Telehealth | Developed by <a href="https://mavenx.co">Maven X LLC</a> | All Rights Reserved
+    </div>
+    <script>
+    // Get the parameters that are passed in
+function getQueryParams() {
+    const params = {};
+    window.location.search.slice(1).split('&').forEach(param => {
+        const [key, value] = param.split('=');
+        params[key] = decodeURIComponent(value);
+    });
+    return params;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    function createCheckoutSession() {
+        const params = getQueryParams();
+        const { price_id, patient_id, type } = params;
+        const loadingMessageDiv = document.getElementById('loadingMessage');
+        const errorMessageDiv = document.getElementById('errorMessage');
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        // Ensure all messages are hidden first
+        loadingMessageDiv.style.display = 'none';
+        errorMessageDiv.style.display = 'none';
+        buttonContainer.style.display = 'none';
+
+        if (price_id && patient_id && type) {
+            loadingMessageDiv.style.display = 'block';
+            errorMessageDiv.style.display = 'none'; // Ensure error message is hidden
+            buttonContainer.style.display = 'none'; // Ensure button is hidden
+
+            const stripe = Stripe('pk_live_51NpdgbAxxDQoaOGN3EW8tlIFWZQlYMO5OkhFpkebrZYjeamTLFBDuCVhCcTsedYVEafhcN9GPj2wSF0MaKpEpRTE004PLPntcJ');
+
+            // Create Stripe checkout session
+            fetch('https://hook.us1.make.com/cgx8ovov9sbxswdcv7d3vt5oitlfpyh7', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    price_id,
+                    patient_id,
+                    type,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.sessionId) {
+                    return stripe.redirectToCheckout({ sessionId: data.sessionId });
+                } else {
+                    throw new Error('Failed to create checkout session');
+                }
+            })
+            .then(result => {
+                if (result.error) {
+                    alert(result.error.message); // Display error if there's an issue
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while creating the checkout session. Try refressing the page.');
+            });
+        } else {
+            // If params are missing, hide loading and show error message
+            loadingMessageDiv.style.display = 'none'; // Hide the loading message
+            errorMessageDiv.style.display = 'block'; // Show the error message
+            buttonContainer.style.display = 'block'; // Show the button to return
+        }
+    }
+
+    // Automatically create the checkout session when the page loads
+    createCheckoutSession();
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - MANÜ Telehealth</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
+
+    body {
+        background: linear-gradient(135deg, #39bad8, #cc68e3, #ffffff);
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    .content-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        width: 100%;
+    }
+    .content {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+        .content h1 {
+            font-size: 36px;
+        }
+        .content p {
+            font-size: 16px;
+        }
+    }
+    @media (max-width: 480px) {
+        .header img {
+            height: 100px;
+        }
+        .content h1 {
+            font-size: 28px;
+        }
+        .content p {
+            font-size: 14px;
+        }
+        .content a {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://manutelehealth.com/images/2023-08-manu-bw02.png" alt="MANÜ Telehealth Logo">
+    </div>
+    <div class="content-container">
+        <div class="content">
+            <h1 style="color:#39bad8; font-size:50px;">404</h1>
+            <p>Sorry, the page you're looking for cannot be found.</p>
+            <a href="https://manutelehealth.com">Go to Homepage</a>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2023 MANÜ Telehealth | Developed by <a href="https://mavenx.co">Maven X LLC</a> | All Rights Reserved
+    </div>
+</body>
+</html>

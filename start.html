@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Start - MANÜ Telehealth</title>
+    <meta name="description" content="Start your MANÜ Telehealth journey here. Begin the onboarding process to access personalized healthcare tailored to your needs.">
+    <link rel="canonical" href="https://manutelehealth.com/start">
+    <meta property="og:title" content="Patient Onboarding - MANÜ Telehealth">
+    <meta property="og:description" content="Start your MANÜ Telehealth journey here. Begin the onboarding process to access personalized healthcare tailored to your needs.">
+    <meta property="og:image" content="https://manutelehealth.com/images/social-share-image.jpg">
+    <meta property="og:url" content="https://manutelehealth.com/start">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Patient Onboarding - MANÜ Telehealth">
+    <meta name="twitter:description" content="Start your MANÜ Telehealth journey here. Begin the onboarding process to access personalized healthcare tailored to your needs.">
+    <meta name="twitter:image" content="https://manutelehealth.com/images/social-share-image.jpg">
+    <meta name="twitter:url" content="https://manutelehealth.com/start">
+    <meta name="robots" content="index, follow">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MANÜ Telehealth",
+      "url": "https://manutelehealth.com",
+      "description": "Start your MANÜ Telehealth journey here. Begin the onboarding process to access personalized healthcare tailored to your needs.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "MANÜ Telehealth",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://manutelehealth.com/images/2023-08-manu-main.jpg"
+        }
+      }
+    }
+    </script>
+    <link rel="icon" href="https://manutelehealth.com/images/cropped-favicon-192x192.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- Hotjar Tracking Code for Manü Telehealth -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3635830,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #39bad8, #cc68e3, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .divider {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .trust-badge {
+            max-height: 25px;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="https://manutelehealth.com">
+            <img src="https://manutelehealth.com/images/2023-08-manu-bw02.png" alt="MANÜ Telehealth Logo">
+        </a>
+    </div>
+    <div class="content-container">
+        <div class="content">
+            <h1>Unlock Your Healthiest You with MANÜ</h1>
+            <img src="https://manutelehealth.com/images/2024-09-jenny-testimonial.jpg" alt="Before & After Image" width="400">
+            <h2>Take our quiz to see if you qualify!</h2>
+            <p>Enter your email and phone number below to get started or pick up where you left off.</p>
+            <p><i>This step helps us verify your current application status. No information is collected or stored.</i></p>
+            <form id="emailForm" onsubmit="checkEmail(event)">
+    			<div class="input-wrapper">
+        			<input type="email" id="email" placeholder="Enter your email*" required>
+    			</div>
+    			<div class="input-wrapper">
+                    <input type="tel" id="phone" placeholder="Enter your phone number*" required>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+    			<div class="cf-turnstile" data-sitekey="0x4AAAAAAAhsSx36yyWg6_nT" data-callback="onTurnstileVerified"></div>
+			</form>
+			<hr class="divider">
+			    <div class="trust-badges">
+			        <img src="https://staging.manutelehealth.com/images/hipaa-compliant.png" alt="HIPAA Compliant" class="trust-badge">
+			        <p>|</p>
+			        <img src="https://staging.manutelehealth.com/images/powered-by-stripe.png" alt="Powered by Stripe" class="trust-badge">
+			</div>
+            <div id="overlayMessage" class="message"></div>
+            <div id="loading" class="message info" style="display: none;">Processing...</div>
+        </div>
+    </div>
+    <div id="overlay" class="overlay" style="display: none;">
+    	<div class="overlay-content">
+        	<p id="overlayMessageContent" class="message"></p>
+        	<button onclick="closeOverlay()" class="close-button">Close</button>
+    	</div>
+	</div>
+    <div class="footer">
+        &copy; Copyright 2024 MANÜ Telehealth | Developed by <a href="https://mavenx.co">Maven X LLC</a> | All Rights Reserved
+    </div>
+
+<script>
+function timeoutPromise(ms, message) {
+    return new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(message)), ms)
+    );
+}
+
+function formatPhoneNumber(phone) {
+    // Remove any characters that are not digits
+    phone = phone.replace(/\D/g, '');
+
+    // If the phone number doesn't start with a country code, assume it's a US number and add +1
+    if (phone.length === 10) {
+        phone = '1' + phone;
+    }
+
+    // Add the '+' sign for the country code
+    return '+' + phone;
+}
+
+function checkEmail(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value;
+    const messageElement = document.getElementById('overlayMessageContent');
+    const loadingElement = document.getElementById('loading');
+    const overlay = document.getElementById('overlay');
+    const turnstileToken = document.querySelector('.cf-turnstile').dataset.token;
+    
+    // Format the phone number
+    phone = formatPhoneNumber(phone);
+
+    // Ensure Turnstile is verified before proceeding
+    if (!turnstileToken) {
+        loadingElement.style.display = 'none'; // Hide the loading animation
+        messageElement.innerHTML = "<b>⚠️ Warning ⚠️</b><br>You must receive a 'Success' CAPTCHA verification before being able to continue.";
+        messageElement.className = "message error";
+        overlay.style.display = 'flex';
+        messageElement.style.display = 'block';
+        return; // Stop further execution if Turnstile is not verified
+    }
+
+    // Show the loading animation
+    loadingElement.style.display = 'block';
+
+    Promise.race([
+        fetch('https://hook.us1.make.com/rwedygk8ummqkb7o8e6hhmk6n2e56i5l', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, phone: phone, turnstileToken: turnstileToken })
+        }).then(response => response.json()),
+        timeoutPromise(10000, "The request timed out. Please try again.")
+    ])
+    .then(data => {
+        loadingElement.style.display = 'none'; // Hide the loading animation
+
+        if (data.status === "existing" || data.status === "completed") {
+            messageElement.innerHTML = "<b>🎉 Success! 🎉</b><br>Please check your email and text messages for further information.";
+            messageElement.className = "message info";
+            overlay.style.display = 'flex';
+            messageElement.style.display = 'block';
+        } else if (data.status === "new") {
+            window.location.href = data.redirectUrl;
+            return; // Stop further execution to avoid showing overlay
+        } else {
+            messageElement.innerHTML = "<b>🔴 Error 🔴</b><br>We're sorry, an error occurred. If you continue to receive this error, please contact info@manutelehealth.com";
+            messageElement.className = "message error";
+            overlay.style.display = 'flex';
+            messageElement.style.display = 'block';
+        }
+    })
+    .catch(error => {
+        loadingElement.style.display = 'none'; // Hide the loading animation
+        messageElement.innerHTML = "<b>🔴 Error 🔴</b><br>We're sorry, an error occurred. If you continue to receive this error, please contact info@manutelehealth.com";
+        messageElement.className = "message error";
+        overlay.style.display = 'flex';
+        messageElement.style.display = 'block';
+    });
+}
+
+function closeOverlay() {
+    document.getElementById('overlay').style.display = 'none';
+}
+
+function onTurnstileVerified(token) {
+    // Save the token in the Turnstile element's data attribute
+    document.querySelector('.cf-turnstile').dataset.token = token;
+    console.log('Turnstile verified:', token);
+}
+</script>
+</body>
+</html>
